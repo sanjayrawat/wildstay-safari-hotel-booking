@@ -1,0 +1,145 @@
+<!-- Hero Section -->
+<div class="hero-section relative flex items-center">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+        Experience the Wild
+      </h1>
+      <p class="mt-3 max-w-md mx-auto text-base text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+        Book your next adventure with us. Luxury hotels and thrilling safari experiences await.
+      </p>
+      <div class="mt-10 flex justify-center">
+        <div class="search-box p-6 rounded-lg shadow-xl w-full max-w-2xl">
+          <form (submit)="onSearch($event)" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Location</label>
+              <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                <option value="">Select Location</option>
+                <option *ngFor="let location of locations" [value]="location.value">
+                  {{ location.name }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Check-in</label>
+              <input type="date" name="check-in" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Check-out</label>
+              <input type="date" name="check-out" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <div class="md:col-span-3">
+              <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                Search Availability
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Featured Hotels Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-8">Featured Hotels</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Hotel Card 1 -->
+      <div class="hotel-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all">
+        <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg" 
+             class="w-full h-48 object-cover" alt="Luxury Hotel">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900">Serengeti Lodge</h3>
+          <p class="text-gray-600 mt-2">Experience luxury in the heart of the wilderness</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-blue-600 font-bold">$299/night</span>
+            <a routerLink="/booking" class="btn-primary bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 inline-block">
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hotel Card 2 -->
+      <div class="hotel-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all">
+        <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg" 
+             class="w-full h-48 object-cover" alt="Luxury Hotel">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900">Masai Mara Resort</h3>
+          <p class="text-gray-600 mt-2">Luxury accommodations with stunning views</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-blue-600 font-bold">$399/night</span>
+            <a routerLink="/booking" class="btn-primary bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 inline-block">
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hotel Card 3 -->
+      <div class="hotel-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all">
+        <img src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg" 
+             class="w-full h-48 object-cover" alt="Luxury Hotel">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900">Kruger Lodge</h3>
+          <p class="text-gray-600 mt-2">Premium comfort in a natural setting</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-blue-600 font-bold">$349/night</span>
+            <a routerLink="/booking" class="btn-primary bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 inline-block">
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Safari Experiences Section -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-8">Safari Experiences</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Safari Card 1 -->
+      <div class="safari-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all">
+        <div class="md:flex">
+          <div class="md:flex-shrink-0">
+            <img src="https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg" 
+                 class="h-48 w-full md:w-48 object-cover" alt="Safari">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900">Big Five Safari</h3>
+            <p class="mt-2 text-gray-600">Experience the thrill of seeing Africa's Big Five in their natural habitat</p>
+            <div class="mt-4">
+              <span class="text-blue-600 font-bold">$599/person</span>
+              <a routerLink="/booking" class="btn-primary mt-4 w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 inline-block text-center">
+                Book Safari
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Safari Card 2 -->
+      <div class="safari-card bg-white rounded-lg shadow-lg overflow-hidden transform transition-all">
+        <div class="md:flex">
+          <div class="md:flex-shrink-0">
+            <img src="https://images.pexels.com/photos/59989/elephant-herd-of-elephants-african-bush-elephant-africa-59989.jpeg" 
+                 class="h-48 w-full md:w-48 object-cover" alt="Safari">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900">Migration Safari</h3>
+            <p class="mt-2 text-gray-600">Witness the great wildebeest migration across the Serengeti</p>
+            <div class="mt-4">
+              <span class="text-blue-600 font-bold">$799/person</span>
+              <a routerLink="/booking" class="btn-primary mt-4 w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 inline-block text-center">
+                Book Safari
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
