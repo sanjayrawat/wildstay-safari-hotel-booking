@@ -1,0 +1,74 @@
+<nav class="bg-white shadow-lg fixed w-full z-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <a routerLink="/" class="text-2xl font-bold text-blue-600">
+          <i class="fas fa-compass mr-2"></i>
+          WildStay
+        </a>
+      </div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a routerLink="/" routerLinkActive="text-blue-600" [routerLinkActiveOptions]="{exact: true}" class="nav-link text-gray-700 hover:text-blue-600">Home</a>
+        <a routerLink="/hotels" routerLinkActive="text-blue-600" class="nav-link text-gray-700 hover:text-blue-600">Hotels</a>
+        <a routerLink="/safaris" routerLinkActive="text-blue-600" class="nav-link text-gray-700 hover:text-blue-600">Safaris</a>
+        <a routerLink="/booking" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Book Now</a>
+      </div>
+      <div class="md:hidden flex items-center">
+        <button (click)="toggleMobileMenu()" class="mobile-menu-button p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden" [class.active]="isMobileMenuOpen">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a routerLink="/" routerLinkActive="bg-blue-50 text-blue-600" [routerLinkActiveOptions]="{exact: true}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Home</a>
+        <a routerLink="/hotels" routerLinkActive="bg-blue-50 text-blue-600" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Hotels</a>
+        <a routerLink="/safaris" routerLinkActive="bg-blue-50 text-blue-600" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Safaris</a>
+        <a routerLink="/booking" class="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white hover:bg-blue-700">Book Now</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="min-h-screen pt-16">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">WildStay</h3>
+        <p class="text-gray-400">Your premier destination for luxury hotels and safari experiences.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a routerLink="/" class="text-gray-400 hover:text-white">Home</a></li>
+          <li><a routerLink="/hotels" class="text-gray-400 hover:text-white">Hotels</a></li>
+          <li><a routerLink="/safaris" class="text-gray-400 hover:text-white">Safaris</a></li>
+          <li><a routerLink="/booking" class="text-gray-400 hover:text-white">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+        <ul class="space-y-2 text-gray-400">
+          <li><i class="fas fa-phone mr-2"></i> +1 234 567 890</li>
+          <li><i class="fas fa-envelope mr-2"></i> info@wildstay.com</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-xl"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+      <p>&copy; 2024 WildStay. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
