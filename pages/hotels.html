@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels - WildStay</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hotel-card {
+            transition: all 0.3s ease;
+        }
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .filter-section {
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-2xl font-bold text-blue-600">
+                        <i class="fas fa-compass mr-2"></i>
+                        WildStay
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="hotels.html" class="nav-link text-blue-600">Hotels</a>
+                    <a href="safaris.html" class="nav-link text-gray-700 hover:text-blue-600">Safaris</a>
+                    <a href="booking.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Filters Sidebar -->
+                <div class="w-full md:w-1/4">
+                    <div class="bg-white rounded-lg shadow-lg p-6 sticky top-20 filter-section">
+                        <h2 class="text-xl font-semibold mb-4">Filters</h2>
+                        
+                        <!-- Price Range -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-2">Price Range</h3>
+                            <div class="space-y-2">
+                                <input type="range" min="0" max="1000" value="500" class="w-full" id="priceRange">
+                                <div class="flex justify-between text-sm text-gray-600">
+                                    <span>$0</span>
+                                    <span id="priceValue">$500</span>
+                                    <span>$1000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-2">Location</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600">
+                                    <span class="ml-2">Serengeti</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600">
+                                    <span class="ml-2">Masai Mara</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600">
+                                    <span class="ml-2">Kruger Park</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Amenities -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-2">Amenities</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600">
+                                    <span class="ml-2">Pool</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600">
+                                    <span class="ml-2">Spa</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600">
+                                    <span class="ml-2">Restaurant</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-blue-600">
+                                    <span class="ml-2">WiFi</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-2">Rating</h3>
+                            <div class="flex items-center space-x-2">
+                                <button class="px-3 py-1 border rounded-full hover:bg-blue-50 hover:border-blue-500">
+                                    <i class="fas fa-star text-yellow-400"></i> 5
+                                </button>
+                                <button class="px-3 py-1 border rounded-full hover:bg-blue-50 hover:border-blue-500">
+                                    <i class="fas fa-star text-yellow-400"></i> 4+
+                                </button>
+                                <button class="px-3 py-1 border rounded-full hover:bg-blue-50 hover:border-blue-500">
+                                    <i class="fas fa-star text-yellow-400"></i> 3+
+                                </button>
+                            </div>
+                        </div>
+
+                        <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                            Apply Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hotel Listings -->
+                <div class="w-full md:w-3/4">
+                    <div class="flex justify-between items-center mb-6">
+                        <h1 class="text-2xl font-bold">Available Hotels</h1>
+                        <select class="border rounded-lg px-4 py-2">
+                            <option>Sort by: Recommended</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Rating: High to Low</option>
+                        </select>
+                    </div>
+
+                    <!-- Hotel Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Hotel Card 1 -->
+                        <div class="hotel-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg" 
+                                 class="w-full h-48 object-cover" alt="Serengeti Lodge">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold">Serengeti Lodge</h3>
+                                        <p class="text-gray-600"><i class="fas fa-map-marker-alt"></i> Serengeti, Tanzania</p>
+                                    </div>
+                                    <div class="flex items-center bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                        4.8
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                                        <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                                        <span><i class="fas fa-swimming-pool"></i> Pool</span>
+                                        <span><i class="fas fa-utensils"></i> Restaurant</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between">
+                                    <div>
+                                        <span class="text-2xl font-bold">$299</span>
+                                        <span class="text-gray-600">/night</span>
+                                    </div>
+                                    <a href="booking.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hotel Card 2 -->
+                        <div class="hotel-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg" 
+                                 class="w-full h-48 object-cover" alt="Masai Mara Resort">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold">Masai Mara Resort</h3>
+                                        <p class="text-gray-600"><i class="fas fa-map-marker-alt"></i> Masai Mara, Kenya</p>
+                                    </div>
+                                    <div class="flex items-center bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                        4.9
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                                        <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                                        <span><i class="fas fa-spa"></i> Spa</span>
+                                        <span><i class="fas fa-utensils"></i> Restaurant</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between">
+                                    <div>
+                                        <span class="text-2xl font-bold">$399</span>
+                                        <span class="text-gray-600">/night</span>
+                                    </div>
+                                    <a href="booking.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                        Book Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- More hotel cards can be added here -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="mt-8 flex justify-center">
+                        <nav class="flex items-center space-x-2">
+                            <button class="px-3 py-1 rounded-lg border hover:bg-gray-50">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="px-3 py-1 rounded-lg border bg-blue-600 text-white">1</button>
+                            <button class="px-3 py-1 rounded-lg border hover:bg-gray-50">2</button>
+                            <button class="px-3 py-1 rounded-lg border hover:bg-gray-50">3</button>
+                            <button class="px-3 py-1 rounded-lg border hover:bg-gray-50">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/hotels.js"></script>
+</body>
+</html>
