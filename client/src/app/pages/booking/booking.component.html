@@ -1,0 +1,125 @@
+<div class="pt-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Booking Progress -->
+  <div class="booking-progress flex justify-between mb-8">
+    <div class="step flex flex-col items-center" [class.active]="currentStep === 1">
+      <div class="w-8 h-8 rounded-full" [ngClass]="{'bg-blue-600 text-white': currentStep === 1, 'bg-gray-200 text-gray-600': currentStep !== 1}">
+        1
+      </div>
+      <span class="mt-2 text-sm font-medium" [ngClass]="{'text-gray-900': currentStep === 1, 'text-gray-600': currentStep !== 1}">Details</span>
+    </div>
+    <div class="step flex flex-col items-center" [class.active]="currentStep === 2">
+      <div class="w-8 h-8 rounded-full" [ngClass]="{'bg-blue-600 text-white': currentStep === 2, 'bg-gray-200 text-gray-600': currentStep !== 2}">
+        2
+      </div>
+      <span class="mt-2 text-sm font-medium" [ngClass]="{'text-gray-900': currentStep === 2, 'text-gray-600': currentStep !== 2}">Payment</span>
+    </div>
+    <div class="step flex flex-col items-center" [class.active]="currentStep === 3">
+      <div class="w-8 h-8 rounded-full" [ngClass]="{'bg-blue-600 text-white': currentStep === 3, 'bg-gray-200 text-gray-600': currentStep !== 3}">
+        3
+      </div>
+      <span class="mt-2 text-sm font-medium" [ngClass]="{'text-gray-900': currentStep === 3, 'text-gray-600': currentStep !== 3}">Confirmation</span>
+    </div>
+  </div>
+
+  <!-- Booking Form -->
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" *ngIf="currentStep === 1" class="bg-white rounded-lg shadow-lg p-6 space-y-6">
+    <h1 class="text-2xl font-bold mb-6">Booking Details</h1>
+
+    <!-- Selected Item Preview -->
+    <div class="bg-gray-50 rounded-lg p-4 mb-6 flex items-start">
+      <img [src]="selectedItem.image" class="w-24 h-24 object-cover rounded-lg" [alt]="selectedItem.name">
+      <div class="ml-4">
+        <h3 class="font-semibold">{{selectedItem.name}}</h3>
+        <p class="text-gray-600"><i class="fas fa-map-marker-alt"></i> {{selectedItem.location}}</p>
+        <div class="mt-2 flex items-center">
+          <span class="text-blue-600 font-bold">\${{selectedItem.price}}</span>
+          <span class="text-gray-600" *ngIf="selectedItem.type === 'hotel'">/night</span>
+          <span class="text-gray-600" *ngIf="selectedItem.type === 'safari'">/person</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guest Information -->
+    <div formGroupName="guestInfo">
+      <h2 class="text-lg font-semibold mb-4">Guest Information</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">First Name</label>
+          <input formControlName="firstName" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" [class.border-red-500]="bookingForm.get('guestInfo.firstName')?.invalid && bookingForm.get('guestInfo.firstName')?.touched">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Last Name</label>
+          <input formControlName="lastName" type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" [class.border-red-500]="bookingForm.get('guestInfo.lastName')?.invalid && bookingForm.get('guestInfo.lastName')?.touched">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input formControlName="email" type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" [class.border-red-500]="bookingForm.get('guestInfo.email')?.invalid && bookingForm.get('guestInfo.email')?.touched">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Phone</label>
+          <input formControlName="phone" type="tel" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" [class.border-red-500]="bookingForm.get('guestInfo.phone')?.invalid && bookingForm.get('guestInfo.phone')?.touched">
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Details -->
+    <div formGroupName="bookingDetails">
+      <h2 class="text-lg font-semibold mb-4">Booking Details</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Check-in Date</label>
+          <input formControlName="checkIn" type="date" (change)="onCheckInChange($event)" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" [class.border-red-500]="bookingForm.get('bookingDetails.checkIn')?.invalid && bookingForm.get('bookingDetails.checkIn')?.touched">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Check-out Date</label>
+          <input formControlName="checkOut" type="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" [class.border-red-500]="bookingForm.get('bookingDetails.checkOut')?.invalid && bookingForm.get('bookingDetails.checkOut')?.touched">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Number of Adults</label>
+          <input formControlName="adults" type="number" min="1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" [class.border-red-500]="bookingForm.get('bookingDetails.adults')?.invalid && bookingForm.get('bookingDetails.adults')?.touched">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Number of Children</label>
+          <input formControlName="children" type="number" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" [class.border-red-500]="bookingForm.get('bookingDetails.children')?.invalid && bookingForm.get('bookingDetails.children')?.touched">
+        </div>
+      </div>
+    </div>
+
+    <!-- Special Requests -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Special Requests</label>
+      <textarea formControlName="specialRequests" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div class="flex items-start">
+      <input formControlName="terms" type="checkbox" class="mt-1 form-checkbox text-blue-600" [class.border-red-500]="bookingForm.get('terms')?.invalid && bookingForm.get('terms')?.touched">
+      <label class="ml-2 text-sm text-gray-600">
+        I agree to the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a> and 
+        <a href="#" class="text-blue-600 hover:underline">cancellation policy</a>
+      </label>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+        Proceed to Payment
+      </button>
+    </div>
+  </form>
+
+  <!-- Payment Step -->
+  <div *ngIf="currentStep === 2" class="bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-bold mb-6">Payment</h2>
+    <!-- Payment form or modal can be implemented here -->
+    <p>Payment processing UI goes here.</p>
+    <button (click)="previousStep()" class="mr-4 bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400">Back</button>
+    <button (click)="nextStep()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Confirm Booking</button>
+  </div>
+
+  <!-- Confirmation Step -->
+  <div *ngIf="currentStep === 3" class="bg-white rounded-lg shadow-lg p-6 text-center">
+    <h2 class="text-2xl font-bold mb-6">Booking Confirmation</h2>
+    <p>Your booking has been confirmed! Thank you for choosing WildStay.</p>
+  </div>
+</div>
