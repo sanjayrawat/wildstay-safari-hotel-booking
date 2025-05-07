@@ -1,0 +1,121 @@
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Filters Sidebar -->
+      <div class="w-full md:w-1/4">
+        <div class="bg-white rounded-lg shadow-lg p-6 sticky top-20 filter-section">
+          <h2 class="text-xl font-semibold mb-4">Filters</h2>
+          
+          <!-- Price Range -->
+          <div class="mb-6">
+            <h3 class="font-medium mb-2">Price Range</h3>
+            <div class="space-y-2">
+              <input type="range" min="0" max="2000" [value]="priceRange" (input)="updatePriceRange($event)" class="w-full" id="priceRange">
+              <div class="flex justify-between text-sm text-gray-600">
+                <span>$0</span>
+                <span id="priceValue">${{priceRange}}</span>
+                <span>$2000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Duration -->
+          <div class="mb-6">
+            <h3 class="font-medium mb-2">Duration</h3>
+            <div class="space-y-2">
+              <label *ngFor="let duration of durations" class="flex items-center">
+                <input type="checkbox" [(ngModel)]="duration.checked" class="form-checkbox text-blue-600">
+                <span class="ml-2">{{duration.name}}</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Safari Type -->
+          <div class="mb-6">
+            <h3 class="font-medium mb-2">Safari Type</h3>
+            <div class="space-y-2">
+              <label *ngFor="let type of types" class="flex items-center">
+                <input type="checkbox" [(ngModel)]="type.checked" class="form-checkbox text-blue-600">
+                <span class="ml-2">{{type.name}}</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Wildlife -->
+          <div class="mb-6">
+            <h3 class="font-medium mb-2">Wildlife</h3>
+            <div class="grid grid-cols-2 gap-2">
+              <button *ngFor="let animal of wildlife" 
+                      (click)="toggleWildlife(animal)"
+                      class="px-3 py-1 border rounded-full hover:bg-blue-50 hover:border-blue-500 flex items-center">
+                <i class="fas fa-paw mr-1"></i> {{animal}}
+              </button>
+            </div>
+          </div>
+
+          <button (click)="applyFilters()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+            Apply Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Safari Listings -->
+      <div class="w-full md:w-3/4">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold">Safari Experiences</h1>
+          <select (change)="applyFilters()" class="border rounded-lg px-4 py-2">
+            <option>Sort by: Recommended</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Duration: Shortest to Longest</option>
+          </select>
+        </div>
+
+        <!-- Safari Cards -->
+        <div class="space-y-6">
+          <div *ngFor="let safari of safaris" class="safari-card bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="md:flex">
+              <div class="md:w-1/3">
+                <div class="relative h-full">
+                  <img [src]="safari.image" class="w-full h-full object-cover" [alt]="safari.name">
+                  <div *ngIf="safari.featured" class="absolute top-4 left-4 bg-yellow-400 text-gray-900 px-2 py-1 rounded-lg text-sm font-medium">
+                    Featured
+                  </div>
+                </div>
+              </div>
+              <div class="md:w-2/3 p-6">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="text-xl font-semibold">{{safari.name}}</h3>
+                    <p class="text-gray-600"><i class="fas fa-map-marker-alt"></i> {{safari.location}}</p>
+                  </div>
+                  <div class="flex items-center bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    <i class="fas fa-star text-yellow-400 mr-1"></i>
+                    {{safari.rating}}
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <p class="text-gray-600">{{safari.description}}</p>
+                </div>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="px-2 py-1 bg-gray-100 rounded-full text-sm">{{safari.duration}}</span>
+                  <span *ngFor="let type of safari.type" class="px-2 py-1 bg-gray-100 rounded-full text-sm">{{type}}</span>
+                  <span *ngFor="let feature of safari.features" class="px-2 py-1 bg-gray-100 rounded-full text-sm">{{feature}}</span>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                  <div>
+                    <span class="text-2xl font-bold">${{safari.price}}</span>
+                    <span class="text-gray-600">/person</span>
+                  </div>
+                  <a routerLink="/booking" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                    Book Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
