@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Stay - WildStay</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .booking-progress {
+            position: relative;
+        }
+        .booking-progress::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+        .step {
+            position: relative;
+            z-index: 1;
+            background: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-2xl font-bold text-blue-600">
+                        <i class="fas fa-compass mr-2"></i>
+                        WildStay
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="hotels.html" class="nav-link text-gray-700 hover:text-blue-600">Hotels</a>
+                    <a href="safaris.html" class="nav-link text-gray-700 hover:text-blue-600">Safaris</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Booking Progress -->
+            <div class="booking-progress flex justify-between mb-8">
+                <div class="step flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
+                        1
+                    </div>
+                    <span class="mt-2 text-sm font-medium">Details</span>
+                </div>
+                <div class="step flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">
+                        2
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-600">Payment</span>
+                </div>
+                <div class="step flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">
+                        3
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-600">Confirmation</span>
+                </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h1 class="text-2xl font-bold mb-6">Booking Details</h1>
+
+                <!-- Selected Item Preview -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="flex items-start">
+                        <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg" 
+                             class="w-24 h-24 object-cover rounded-lg" alt="Selected Item">
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Serengeti Lodge</h3>
+                            <p class="text-gray-600"><i class="fas fa-map-marker-alt"></i> Serengeti, Tanzania</p>
+                            <div class="mt-2 flex items-center">
+                                <span class="text-blue-600 font-bold">$299</span>
+                                <span class="text-gray-600">/night</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="bookingForm" class="space-y-6">
+                    <!-- Guest Information -->
+                    <div>
+                        <h2 class="text-lg font-semibold mb-4">Guest Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">First Name</label>
+                                <input type="text" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <input type="text" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Phone</label>
+                                <input type="tel" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Booking Details -->
+                    <div>
+                        <h2 class="text-lg font-semibold mb-4">Booking Details</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Check-in Date</label>
+                                <input type="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Check-out Date</label>
+                                <input type="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Number of Guests</label>
+                                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Room Type</label>
+                                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                    <option>Standard</option>
+                                    <option>Deluxe</option>
+                                    <option>Suite</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Requests -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Special Requests</label>
+                        <textarea rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                    </div>
+
+                    <!-- Price Summary -->
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <h2 class="text-lg font-semibold mb-4">Price Summary</h2>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Room Rate (per night)</span>
+                                <span>$299</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Number of Nights</span>
+                                <span>3</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Taxes & Fees</span>
+                                <span>$89.70</span>
+                            </div>
+                            <div class="border-t pt-2 mt-2">
+                                <div class="flex justify-between font-bold">
+                                    <span>Total</span>
+                                    <span>$986.70</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="flex items-start">
+                        <input type="checkbox" required class="mt-1 form-checkbox text-blue-600">
+                        <label class="ml-2 text-sm text-gray-600">
+                            I agree to the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a> and 
+                            <a href="#" class="text-blue-600 hover:underline">cancellation policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                            Proceed to Payment
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('bookingForm');
+            const checkInInput = form.querySelector('input[type="date"]:first-of-type');
+            const checkOutInput = form.querySelector('input[type="date"]:last-of-type');
+
+            // Set minimum date as today
+            const today = new Date().toISOString().split('T')[0];
+            checkInInput.min = today;
+
+            // Update checkout minimum date when checkin changes
+            checkInInput.addEventListener('change', function() {
+                checkOutInput.min = this.value;
+                if (checkOutInput.value && checkOutInput.value < this.value) {
+                    checkOutInput.value = this.value;
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the form data to your backend
+                // For now, we'll just simulate moving to the next step
+                alert('Proceeding to payment...');
+            });
+        });
+    </script>
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/booking.js"></script>
+</body>
+</html>
